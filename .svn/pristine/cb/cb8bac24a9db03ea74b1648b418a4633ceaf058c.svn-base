@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>FrozenUI Demo</title>
+<link rel="stylesheet" href="../frozenui/dist/css/frozen.css">
+<style>
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%;
+}
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li,
+	pre, form, fieldset, legend, button, input, textarea, th, td {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: arial;
+	background: #FFF;
+	background-color: #eee;
+	color: #333;
+	font-size: 14px;
+	-webkit-text-size-adjust: 100%;
+}
+
+div {
+	display: block;
+}
+
+p {
+	display: block;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+ul, ol, li {
+	list-style: none;
+}
+
+li {
+	display: list-item;
+	text-align: -webkit-match-parent;
+}
+
+input, img {
+	vertical-align: middle;
+}
+
+img {
+	border: 0;
+}
+
+.orange {
+	color: #f60;
+}
+
+i {
+	font-style: normal;
+}
+
+.mb-dtinfo {
+	background: #fff url(../../image/common/sawtooth.png) left bottom
+		repeat-x;
+	padding-bottom: 20px;
+	background-size: 10px 7px;
+}
+
+.mb-dtinfo, #J_olist_plugin .mb-dti, #J_odetail_plugin .mb-dti {
+	padding: 5px 15px 0;
+}
+
+.mb-dtl ul {
+	height: 94px;
+	overflow: hidden;
+}
+
+.mb-dtl li {
+	border-bottom: 1px #ddd dashed;
+	height: 63px;
+	display: -webkit-box;
+	padding: 10px 0;
+}
+
+.ol-l {
+	margin-right: 6px;
+}
+
+.mb-dtl .ol-l {
+	padding-top: 2px;
+}
+
+.ol-l a {
+	width: 56px;
+	height: 56px;
+	border: 1px #e5e5e5 solid;
+	display: -webkit-box;
+	-webkit-box-pack: center;
+	-webkit-box-align: center;
+}
+
+.ol-l img {
+	max-width: 50px;
+	max-height: 50px;
+}
+
+.mb-dtl .ol-m {
+	-webkit-box-flex: 1;
+	width: 100%;
+	font-size: 10px;
+}
+
+.mb-dtl .ol-m h3 {
+	margin-bottom: 20px;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	font-weight: 400;
+	line-height: 14px;
+	height: 28px;
+}
+
+.lightgray {
+	color: #999;
+}
+
+.omit {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.ol-r {
+	-webkit-box-flex: 1;
+	font-size: 12px;
+	line-height: 20px;
+}
+
+.mb-dtl .ol-r {
+	min-width: 72px;
+	padding-right: 1px;
+	text-align: right;
+	font-size: 10px;
+}
+
+.mb-dtl .ol-m-price {
+	line-height: 14px;
+}
+
+.mb-dt {
+	line-height: 14px;
+	margin-top: 12px;
+	padding-bottom: 12px;
+	font-size: 10px;
+}
+
+.mb-dt-tip {
+	margin: 6px 0;
+	font-size: 14px;
+}
+
+.dt-btn {
+	padding-top: 6px;
+	display: -webkit-box;
+}
+
+.mb-dt strong.red {
+	float: right;
+}
+
+.red {
+	color: #d40000;
+}
+
+strong, b {
+	font-weight: 400;
+}
+
+.green {
+	color: #008c46;
+}
+
+em, i {
+	font-style: normal;
+}
+
+.mb-dti {
+	margin-top: 15px;
+	padding: 5px 15px 0;
+}
+
+.mb-dti ul {
+	margin-bottom: 15px;
+}
+
+.c-list {
+	background-color: #fff;
+	border: 1px #c1c1c1 solid;
+	border-radius: 8px;
+}
+
+.c-list li {
+	min-height: 38px;
+	line-height: 38px;
+	border-bottom: 1px #ccc solid;
+	display: -webkit-box;
+}
+
+.mb-dti .c-list li label {
+	text-overflow: clip;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.c-list li label {
+	width: 70px;
+	text-align: right;
+	padding: 0 10px 0 6px;
+	color: #666;
+}
+
+.c-list li span, .c-list li label {
+	display: block;
+	font-size: 12px;
+}
+
+.c-list li span {
+	-webkit-box-flex: 1;
+	padding-right: 6px;
+}
+
+.c-list li span .c-ls-ar {
+	padding-left: 0;
+}
+
+.c-list li .c-ls-ar {
+	display: block;
+	-webkit-box-flex: 1;
+	padding-left: 15px;
+	position: relative;
+}
+
+.c-list li .c-ls-ar:after {
+	content: ' ';
+	position: absolute;
+	right: 15px;
+	top: 15px;
+	border: #666 solid;
+	border-width: 3px 0 0 3px;
+	width: 6px;
+	height: 6px;
+	-webkit-transform: rotate(135deg);
+}
+
+.c-list li:last-child {
+	border-bottom: 0;
+}
+</style>
+</head>
+<body>
+	<header class="ui-header ui-header-positive ui-border-b"
+		style="background: #f2711c">
+		<i class="ui-icon-return" onclick="history.back()"></i>
+		<h1>
+			订单详情<i class="ui-icon-home" style="float: right"></i>
+		</h1>
+	</header>
+
+	<section class="ui-container">
+		<div class="mb-dtinfo">
+			<div class="mb-dtl">
+				<ul>
+					<li data-orderid="1053548654317721">
+						<div class="ol-l">
+							<a class="toDetail"> <img src="" />
+							</a>
+						</div>
+						<div class="ol-m">
+							<a class="toDetail">
+								<h3>MOMAX摩米士 苹果iPhone6贴膜iPhone 6 plus保护膜高透磨砂5.5寸</h3>
+								<p class="lightgray omit">颜色分类:【5.5寸plus专用】透明</p>
+							</a>
+						</div>
+						<div class="ol-r">
+							<p class="ol-m-price">
+								¥29.00 <br> X 1
+							</p>
+							<a
+								href="//fuwu.m.tmall.com/tm-alex/fuwu/index?bizOrderId=1053548654317721"
+								class="ui-btn-s">退款</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="mb-dt" data-orderid="1053548654317721">
+				<p class="dt-p1">
+					实付款<span class="lightgray"></span>：<strong class="red">¥
+						18.00</strong> <br> 数量：<strong class="red">1</strong>
+				</p>
+				<p class="mb-dt-tip">
+					<em class="green">交易成功</em>
+				</p>
+				<p class="dt-btn">
+					<a data-name="viewLogistic" class="ui-btn-lg"
+						style="height: 30px; line-height: 30px; font-size: 14px;"
+						data-param="{&quot;operId&quot;:&quot;0&quot;,&quot;orderId&quot;:&quot;1053548654317721&quot;}">查看物流</a>
+				</p>
+			</div>
+		</div>
+		<div class="mb-dti">
+			<ul class="c-list">
+				<li><label> 卖家ID </label> <span>momax新协专卖店</span></li>
+				<li><label> 姓名 </label> <span>上海新协实业有限公司</span></li>
+				<li><label> 电话 </label> <span><a href="tel:4008206093"
+						class="c-ls-ar">4008206093</a></span></li>
+			</ul>
+			<ul class="c-list">
+				<li><label> 收货地址 </label> <span class="c-ls-multi">上海上海市徐汇区平江路48号</span>
+				</li>
+				<li><label> 收货人 </label><span>李霄云</span></li>
+				<li><label> 手机号码 </label> <span class="blue">18604442068</span>
+				</li>
+			</ul>
+
+			<ul class="c-list">
+				<li><label> 订单号 </label> <span>1053548654317721</span></li>
+				<li><label> 生成时间 </label> <span>2015-05-16 15:26:28</span></li>
+				<li><label> 付款时间 </label> <span>2015-05-16 15:26:32</span></li>
+			</ul>
+		</div>
+	</section>
+	<!-- /.ui-container-->
+	<div
+		style="display: block; background-color: #fff; margin: 0 auto; padding-bottom: 1.3em; margin-top: 50px; text-align: center; width: 100%;"
+		id="footer">
+		<div
+			style="border-bottom: 1px solid #e5e5e5; padding: 0.55em 0.71em; text-align: left;">
+			<span style="color: #868686; display: inline-block; margin: 0 2px;">微信号：juyingweike
+			</span> <span style="float: right"><a href="">反馈</a></span>
+		</div>
+
+
+		<div style="color: #999; line-height: 2.5em;">©CopyRight
+			优美优科技有限公司</div>
+	</div>
+	<script<script
+		src="../frozenui/lib/zepto.min.js"></script>
+	<script
+		src="../frozenui/dist/js/frozen.js"></script>
+	<script>
+		$('ul li').click(function() {
+			location.href = $(this).data('href');
+		});
+		$('.ui-header .ui-btn').click(function() {
+			location.href = 'index.html';
+		});
+	</script>
+</body>
+</html>

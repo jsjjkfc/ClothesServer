@@ -1,0 +1,137 @@
+/*
+MySQL Data Transfer
+Source Host: localhost
+Source Database: clothes_server
+Target Host: localhost
+Target Database: clothes_server
+Date: 2015/7/20 9:25:49
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+-- ----------------------------
+-- Table structure for t_address
+-- ----------------------------
+CREATE TABLE `t_address` (
+  `address_id` int(11) NOT NULL AUTO_INCREMENT,
+  `address` varchar(255) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`address_id`),
+  KEY `address_user_fk` (`user_id`),
+  CONSTRAINT `t_address_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `t_user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for t_order
+-- ----------------------------
+CREATE TABLE `t_order` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `time` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`order_id`),
+  KEY `order_user_fk` (`user_id`),
+  CONSTRAINT `t_order_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `t_user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for t_order_product_relation
+-- ----------------------------
+CREATE TABLE `t_order_product_relation` (
+  `order_product_id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `num` int(11) DEFAULT NULL,
+  `size` varchar(255) DEFAULT NULL,
+  `color` varchar(255) DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`order_product_id`),
+  KEY `ff1` (`order_id`),
+  KEY `ff2` (`product_id`),
+  CONSTRAINT `t_order_product_relation_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `t_order` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `t_order_product_relation_ibfk_4` FOREIGN KEY (`product_id`) REFERENCES `t_product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for t_pic
+-- ----------------------------
+CREATE TABLE `t_pic` (
+  `pic_id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `pic_path` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`pic_id`),
+  KEY `pic_fk` (`product_id`),
+  CONSTRAINT `t_pic_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `t_product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for t_product
+-- ----------------------------
+CREATE TABLE `t_product` (
+  `product_id` int(11) NOT NULL AUTO_INCREMENT,
+  `supplier_id` int(11) DEFAULT NULL,
+  `type_id` int(11) DEFAULT NULL,
+  `product_name` varchar(255) DEFAULT NULL,
+  `product_desc` varchar(255) DEFAULT NULL,
+  `product_price` decimal(9,2) DEFAULT '0.00',
+  `product_sale_price` decimal(9,2) DEFAULT NULL,
+  PRIMARY KEY (`product_id`),
+  KEY `fk1` (`supplier_id`),
+  KEY `fk2` (`type_id`),
+  CONSTRAINT `t_product_ibfk_5` FOREIGN KEY (`supplier_id`) REFERENCES `t_supplier` (`supplier_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `t_product_ibfk_6` FOREIGN KEY (`type_id`) REFERENCES `t_type` (`type_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for t_supplier
+-- ----------------------------
+CREATE TABLE `t_supplier` (
+  `supplier_id` int(11) NOT NULL AUTO_INCREMENT,
+  `supplier_pic_path` varchar(255) DEFAULT NULL,
+  `supplier_desc` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`supplier_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for t_supplier_type_relation
+-- ----------------------------
+CREATE TABLE `t_supplier_type_relation` (
+  `supplier_id` int(11) DEFAULT NULL,
+  `type_id` int(11) DEFAULT NULL,
+  `supplier_type_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`supplier_type_id`),
+  KEY `fk3` (`supplier_id`),
+  KEY `fk4` (`type_id`),
+  CONSTRAINT `t_supplier_type_relation_ibfk_5` FOREIGN KEY (`supplier_id`) REFERENCES `t_supplier` (`supplier_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `t_supplier_type_relation_ibfk_6` FOREIGN KEY (`type_id`) REFERENCES `t_type` (`type_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for t_type
+-- ----------------------------
+CREATE TABLE `t_type` (
+  `type_id` int(11) NOT NULL AUTO_INCREMENT,
+  `type_name` varchar(255) DEFAULT '',
+  PRIMARY KEY (`type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for t_user
+-- ----------------------------
+CREATE TABLE `t_user` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `type` int(11) DEFAULT NULL,
+  `wechat_open_id` varchar(255) DEFAULT NULL,
+  `telephone` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records 
+-- ----------------------------
+INSERT INTO `t_pic` VALUES ('75', null, 'sss');
+INSERT INTO `t_product` VALUES ('82', '1', null, null, '73', '44.00', '0.00');
+INSERT INTO `t_supplier` VALUES ('1', null, '店家1号');
+INSERT INTO `t_type` VALUES ('1', 'sss');
+INSERT INTO `t_user` VALUES ('1', '001', '123', '0', '10000', null);

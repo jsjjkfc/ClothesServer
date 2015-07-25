@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>新增收货地址</title>
+<link rel="stylesheet" href="../frozenui/dist/css/frozen.css">
+<link rel="stylesheet" href="../css/settlement_order/c3e09ac36d.css">
+<link rel="stylesheet" href="../css/settlement_order/86fe49ca90.css">
+<style>
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%;
+}
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li,
+	pre, form, fieldset, legend, button, input, textarea, th, td {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: arial;
+	background: #FFF;
+	background-color: #eee;
+	color: #333;
+	font-size: 14px;
+	-webkit-text-size-adjust: 100%;
+}
+
+div {
+	display: block;
+}
+
+p {
+	display: block;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+#actionBtn {
+	background-color: #f50;
+	color: #fff;
+	font-size: 16px;
+	height: 48px;
+	width: 100%;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	border: 0;
+	align-items: flex-start;
+	text-align: center;
+	cursor: default;
+}
+</style>
+</head>
+<body>
+	<header class="ui-header ui-header-positive ui-border-b"
+		style="background: #f2711c">
+		<i class="ui-icon-return" onclick="history.back()"></i>
+		<h1 style="color: #FFF">
+			新增收货地址<i class="ui-icon-home" style="float: right"></i>
+		</h1>
+	</header>
+
+	<div class="connerdiv" style="margin-top: 45px; margin-bottom: 48px">
+		<form name="addressForm_"
+			action="index.php?m=user&amp;act=address&amp;step=save&amp;filter=update"
+			method="POST">
+			<input name="address_id" value="" type="hidden"> <input
+				name="filter" value="add" type="hidden"> <input name="flag"
+				value="0" type="hidden"> <input name="mk" value=""
+				type="hidden">
+			<dl class="connerbox">
+				<dd>
+					<span class="form_hd">姓名：</span><span class="form_td"><input
+						name="consignee" maxlength="50" class="text_input" type="text"></span>
+				</dd>
+				<dd>
+					<span class="form_hd">手机：</span><span class="form_td"><input
+						name="mobile" maxlength="11" class="text_input" type="text"></span>
+				</dd>
+				<dd>
+					<span class="form_hd">省份：</span> <span class="form_td"><select
+						id="province" name="province" onChange="getShopArea(this, 'city')"
+						class="text_select">
+							<option selected="selected" value="0">请选择</option>
+							<option value="101101">北京市</option>
+							<option value="101102">天津市</option>
+							<option value="101103">河北省</option>
+							<option value="101104">山西省</option>
+							<option value="101105">内蒙古自治区</option>
+							<option value="102101">辽宁省</option>
+							<option value="102102">吉林省</option>
+							<option value="102103">黑龙江省</option>
+							<option value="103101">上海市</option>
+							<option value="103102">江苏省</option>
+							<option value="103103">浙江省</option>
+							<option value="103104">安徽省</option>
+							<option value="103105">福建省</option>
+							<option value="103106">江西省</option>
+							<option value="103107">山东省</option>
+							<option value="104101">河南省</option>
+							<option value="104102">湖北省</option>
+							<option value="104103">湖南省</option>
+							<option value="104104">广东省</option>
+							<option value="104105">广西壮族自治区</option>
+							<option value="104106">海南省</option>
+							<option value="105100">重庆市</option>
+							<option value="105101">四川省</option>
+							<option value="105102">贵州省</option>
+							<option value="105103">云南省</option>
+							<option value="105104">西藏自治区</option>
+							<option value="106101">陕西省</option>
+							<option value="106102">甘肃省</option>
+							<option value="106103">青海省</option>
+							<option value="106104">宁夏回族自治区</option>
+							<option value="106105">新疆维吾尔自治区</option>
+					</select></span> <span class="i_up_arrow"></span>
+				</dd>
+				<dd>
+					<span class="form_hd">城市：</span> <span class="form_td"> <select
+						id="city" name="city" onChange="getShopArea(this, 'district')"
+						class="text_select">
+							<option selected="selected" value="0">请选择</option>
+					</select></span> <span class="i_up_arrow"></span>
+				</dd>
+				<dd>
+					<span class="form_hd">区县：</span> <span class="form_td"> <select
+						id="district" name="district"
+						onChange="getShopArea(this, 'street');getPostcode()"
+						class="text_select">
+							<option selected="selected" value="0">请选择</option>
+					</select></span> <span class="i_up_arrow"></span>
+				</dd>
+				<dd>
+					<span class="form_hd">街道：</span> <span class="form_td"> <select
+						id="street" name="street" class="text_select" oncha="">
+							<option selected="selected" value="0">请选择</option>
+							<option value="-1">无</option>
+					</select></span><span class="i_up_arrow"></span>
+				</dd>
+				<dd>
+					<span class="form_hd">邮编：</span><span class="form_td"><input
+						name="postcode" maxlength="6" class="text_input" id="postcode"
+						type="text"></span>
+				</dd>
+			</dl>
+			<dl class="connerbox">
+				<dd>
+					<span class="form_hd">收货时间：</span> <span class="form_td ml80">
+						<select id="transport_day" name="transport_day"
+						class="text_select" oncha="">
+							<option selected="selected" value="0">请选择</option>
+							<option value="1">送货时间不限</option>
+							<option value="2">只双休日/节假日送货(工作日不用送)</option>
+							<option value="3">只工作日(双休日/节假日不用送)</option>
+					</select>
+					</span><span class="i_up_arrow"></span>
+				</dd>
+			</dl>
+			<dl class="connerbox">
+				<dd>
+					<span>详情地址：</span>
+					<textarea name="address" rows="5"
+						class="textarea_input textarea_address"></textarea>
+				</dd>
+			</dl>
+			<div class="ui-btn-area">
+				<!--<input data-commit="address" class="ui-btn ui-btn-primary ui-btn-lg" data-istempuser="false" data-loading-text="正在提交..." value="完成" type="button">-->
+				<button id="actionBtn">完成</button>
+			</div>
+		</form>
+
+	</div>
+	<!-- /.ui-container-->
+
+	<script src="../frozenui/lib/zepto.min.js"></script>
+	<script src="../frozenui/dist/js/frozen.js"></script>
+
+	<script>
+		$('ul li').click(function() {
+			location.href = $(this).data('href');
+		});
+		$('.ui-header .ui-btn').click(function() {
+			location.href = 'index.html';
+		});
+	</script>
+</body>
+</html>

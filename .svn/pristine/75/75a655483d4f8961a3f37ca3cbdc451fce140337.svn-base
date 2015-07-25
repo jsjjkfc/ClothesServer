@@ -1,0 +1,69 @@
+package com.twocore.service.impl;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Service;
+
+import com.twocore.dao.IPictureDAO;
+import com.twocore.dao.IProductDAO;
+import com.twocore.dao.IProductTypeDAO;
+import com.twocore.dao.ProductDAO;
+import com.twocore.model.PicModel;
+import com.twocore.model.ProductModel;
+import com.twocore.model.TypeModel;
+
+@Service("testService")
+public class ZTestService {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		 ApplicationContext factory=new  ClassPathXmlApplicationContext("classpath:spring*.xml");
+		 IProductDAO service= (IProductDAO) factory.getBean("productDao");
+		 IProductTypeDAO typeDao=(IProductTypeDAO) factory.getBean("productTypeDao");
+		List<TypeModel>list= typeDao.queryAll();
+		 for(TypeModel e:list){
+			 Set<ProductModel> set= e.getProductList();
+			 for(ProductModel product:set){
+				 System.out.println(e.getName()+":"+product.getName());
+			 }
+		 }
+		/* List<ProductModel>list =service.queryAll();
+		 for(int i=0;i<list.size();i++){
+			 System.out.println( list.get(i).getType().getName());
+		 }*/
+	
+	/*	 ProductModel product= new ProductModel();
+		 TypeModel type=new TypeModel();
+		 type.setTypeId(1);
+		 type.setName("ss");
+		 product.setType(type);
+		 product.setSupplierId(1);
+		 product.setProductId(87);
+		 product.setDesc("73");
+		 product.setPrice(44);
+		 Set<PicModel> picPathes = new HashSet<PicModel>();
+		 PicModel p=new PicModel();
+		 p.setPicPath("sss");
+		 p.setProductModel(product);
+		 picPathes.add(p);
+		 product.setPicPathes(picPathes);*/
+		 
+	//	 service.insert(product);
+	
+	//	 service.update(product);
+	//	 service.delete(product);
+		
+		/* IPictureDAO picDao= (IPictureDAO) factory.getBean("pictureDao");
+		 PicModel p1=new PicModel();
+		 p1.setId(79);
+		 picDao.delete(p1);*/
+		
+	}
+
+}

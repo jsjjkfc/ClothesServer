@@ -1,0 +1,132 @@
+package com.twocore.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import me.chanjar.weixin.common.exception.WxErrorException;
+import me.chanjar.weixin.mp.api.WxMpServiceImpl;
+import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
+import me.chanjar.weixin.mp.bean.result.WxMpUser;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.twocore.model.UserModel;
+import com.twocore.service.IUserService;
+
+@Scope("prototype")
+// singleton为单例模式
+@Controller
+@RequestMapping("/account")
+public class AccountController {
+	@Resource(name = "userService")
+	IUserService userService;
+	@Autowired
+	WxMpServiceImpl wxMpServiceImpl;
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String login(HttpServletRequest request,
+			HttpServletResponse response, HttpSession httpSession) {
+		String uname = request.getParameter("name");
+		String upassword = request.getParameter("pwd");
+		if (uname != null && upassword != null) {
+			UserModel model = userService.queryByName(uname);
+			if (model != null) {
+				String password = model.password;
+				if (password.equals(upassword)) {// 认证成功
+					model.setPassword(null);
+					httpSession.setAttribute("user", model);// 存储用户所有信息
+					Map<String, Object> data = new HashMap<String, Object>();
+					data.put("user", model);
+					httpSession.setMaxInactiveInterval(-1);// 设置session销毁时间
+															// ,此处设定为永久
+					return "success";
+				} else {// 密码错误的情况
+
+					return "密码或者用户错误!";
+				}
+			} else {// 用户名找不到的情况
+
+				return "无此用户";
+			}
+		} else { // 因为空值的情况js进行校验了
+					// do nothing
+			return "用户或者密码为空";
+		}
+
+	}
+
+	@RequestMapping(value = "/weChatLogin", method = RequestMethod.GET)
+	public ModelAndView weChatLogin(HttpServletRequest request,
+			HttpServletResponse response, HttpSession httpSession) {
+		String code = request.getParameter("code");
+		String state = request.getParameter("state");
+		if (code != null) {
+			try {
+				WxMpOAuth2AccessToken accessToken = wxMpServiceImpl
+						.oauth2getAccessToken(code);
+				WxMpUser wxMpUser = wxMpServiceImpl.oauth2getUserInfo(
+						accessToken, null);
+				String openId = wxMpUser.getOpenId();
+				UserModel model = userService.queryByWeid(wxMpUser.getOpenId());
+				System.out.println(wxMpUser.getOpenId());
+				System.out.println(state);
+				if (model != null) {// 已经授权过的用户
+					httpSession.setAttribute("user", model);
+					httpSession.setMaxInactiveInterval(-1);
+					return new ModelAndView("forward:/index.jsp", null);
+				} else {// 该用户为新用户，跳转到注册页面，并传递openId到注册页面
+					Map<String, Object> data = new HashMap<String, Object>();
+					data.put("openId", openId);
+					return new ModelAndView("forward:page/register", data);
+				}
+
+			} catch (WxErrorException e) {
+				System.out.println(e.getMessage());
+				Map<String, Object> data = new HashMap<String, Object>();
+				data.put("errorMsg", e.getMessage());
+				return new ModelAndView("page/error", data);
+
+			}
+		} else {
+			Map<String, Object> data = new HashMap<String, Object>();
+			data.put("errorMsg", "访问微信服务器出现问题");
+			return new ModelAndView("page/error", data);
+		}
+
+	}
+
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public ModelAndView register(HttpServletRequest request,
+			HttpServletResponse response, HttpSession httpSession) {
+		String uname = request.getParameter("uname");
+		String upassword = request.getParameter("upassword");
+		// 校验用户名和名字是否为空
+		if (uname == null) {
+			return null;
+		}
+		if (upassword == null) {
+			return null;
+		}
+		return new ModelAndView("", null);
+		// 如果用户名重了，需要返回需要修改的数据
+		// 如果都通过了，则插入用户数据，并跳转到相应的页面
+	}
+
+	@RequestMapping(value = "/username/check", method = RequestMethod.POST)
+	public @ResponseBody String userNameCheck(HttpServletRequest request,
+			HttpServletResponse response, HttpSession httpSession) {
+		String uname = request.getParameter("uname");
+		return null;
+	}
+}

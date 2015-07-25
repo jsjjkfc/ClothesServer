@@ -1,0 +1,12 @@
+Swipe JS-轻量级js触摸滑动类库 。这是一个非常小的一个javascript类库，但他的功能却不简单，
+它可以用来展示web页面上的任何内容，支持精确的触摸移动操作，而且还可以设置自动播放、等比例缩放等等实用性的功能
+zepto.js 是一个轻量级的针对现代高级浏览器的JavaScript库， 它与jquery有着类似的api。 如果你会用jquery，那么你也会用zepto。
+jquery.min.js JQuery是继prototype之后又一个优秀的Javascript库。它是轻量级的js库 ，它兼容CSS3，
+还兼容各种浏览器（IE 6.0+, FF 1.5+, Safari 2.0+, Opera 9.0+），jQuery2.0及后续版本将不再支持IE6/7/8浏览器。
+jQuery使用户能更方便地处理HTML（标准通用标记语言下的一个应用）、events、实现动画效果，并且方便地为网站提供AJAX交互。
+chosen.jquery.min.js 用于绑定数据到下拉列表
+jquery.dataTables.bootstrap.js jquery.dataTables.js 用于加载列表数据
+jquery.form.js 用于提交表单得插件
+jquery.gridly.js 用于展示图片墙（商品添加修改等弹出窗口用到）
+plupload 七牛图片上传组件
+ace 后台模版用到得一些组件

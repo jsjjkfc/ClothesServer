@@ -1,0 +1,69 @@
+package com.twocore.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.twocore.bean.resp.GoodsListModel;
+import com.twocore.dao.IProductDAO;
+import com.twocore.dao.ISupplierDAO;
+import com.twocore.model.PicModel;
+import com.twocore.model.ProductModel;
+import com.twocore.model.SupplierModel;
+import com.twocore.service.IGoodListService;
+
+@Service("goodListService")
+public class GoodListService implements IGoodListService {
+	@Resource(name = "supplierDao")
+	ISupplierDAO supplierDao;
+	@Resource(name = "productDao")
+	IProductDAO productDao;
+
+	/** 代码问题 */
+	@Override
+	@Transactional
+	public List<GoodsListModel> getGoodList() {
+		List<GoodsListModel> goodlist = new ArrayList<GoodsListModel>();
+		List<SupplierModel> suppliers = supplierDao.getAllSuppliers();
+		for (SupplierModel model : suppliers) {
+			GoodsListModel listModel = new GoodsListModel();
+			List<ProductModel> products = productDao.queryBySupplier(model
+					.getSupplierId());
+			for (int k = 0; k < products.size(); k++) {
+				ProductModel productModel = products.get(k);
+				if (productModel != null && k == 0) {
+					listModel.setGoodOneId(productModel.getProductId() + "");
+					listModel.setGoodOnePrice(productModel.getPrice());
+					listModel.setGoodOneSalePrice(productModel.getSalePrice());
+					listModel.setGoodOneTitle(productModel.getName());
+					if (productModel.getPicPathes() != null
+							&& productModel.getPicPathes().toArray() != null) {
+						PicModel picModel = (PicModel) productModel
+								.getPicPathes().toArray()[0];
+						listModel.setGoodOnePic(picModel.getPicPath());
+					}
+
+				} else if (productModel != null && k == 1) {
+					listModel.setGoodTwoId(productModel.getProductId() + "");
+					listModel.setGoodTwoPrice(productModel.getPrice());
+					listModel.setGoodTwoSalePrice(productModel.getSalePrice());
+					listModel.setGoodTwoTitle(productModel.getName());
+					if (productModel.getPicPathes() != null
+							&& productModel.getPicPathes().toArray() != null) {
+						PicModel picModel = (PicModel) productModel
+								.getPicPathes().toArray()[0];
+						listModel.setGoodTwoPic(picModel.getPicPath());
+					}
+				}
+			}
+			listModel.setPicTop(model.getPicPath());
+			listModel.setTitle(model.getDesc());
+			goodlist.add(listModel);
+		}
+		return goodlist;
+	}
+}

@@ -1,0 +1,541 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" />
+<meta name="aplus-terminal" content="1">
+<meta name="apple-mobile-web-app-title" content="UMU">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style"
+	content="black-translucent" />
+<meta name="format-detection" content="telephone=no, address=no">
+<title>优美优商城</title>
+<link rel="stylesheet" type="text/css" href="css/public.css">
+<link rel="stylesheet" type="text/css" href="css/home.css">
+<link rel="stylesheet" type="text/css" href="css/footer.css">
+
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/reset.css" media="all">
+<link rel="stylesheet" type="text/css" href="css/common1.css"
+	media="all">
+<!--首页幻灯js-->
+<script type="text/javascript" src="js/zepto/zepto.js"></script>
+<script type="text/javascript" src="js/swipe/swipe.js"></script>
+
+</head>
+<body>
+	<div class="banner openwebview">
+    <div class="my-container">
+<div id="J_MyInfoDialog" class="my-info-dialog" style="display: none;">
+<h2 class="my-info-hd">我的账户</h2>
+<div class="my-info-bd" data-spm="20000009" style="height:105px">
+<p class="mui-flex">
+<a class="cell favorite-item" href="//h5.m.taobao.com/fav/index.htm">
+收藏宝贝
+</a>
+<a class="cell favorite-shop" href="//h5.m.taobao.com/fav/index.htm#!shop/queryColShop-1">
+收藏店铺
+</a>
+<a class="cell all-order" href="//h5.m.taobao.com/awp/mtb/mtb.htm?v=0#!/awp/mtb/olist.htm?sta=4">
+全部订单
+</a>
+</p>
+</div>
+<a href="javascript:void(0);" id="J_MyInfoClose" class="my-info-close" target="_self"style="color:#000" data-spm-anchor-id="875.7403452.0.0">X</a>
+</div>
+<div id="J_MyInfoMask" class="my-info-mask" style="display: none;"></div>
+</div>
+		<div class="tm-mobile-header">
+			<div class="header-content mui-flex" id="J_HeaderContent">
+				<div class="category-menu cell fixed">
+					<a href="javascript:void(0);" target="_self" id="J_CategoryTrigger"
+						class="category-trigger">×</a>
+				</div>
+				<div id="J_MobileSearch" class="mobile-search cell">
+					<form id="J_SearchForm" action=""
+						method="get" accept-charset="GBK" target="_self">
+						<div class="s-combobox">
+							<div class="s-combobox-input-wrap">
+								<input placeholder="搜索商品/店铺" name="q" value=""
+									class="search-input" type="search" accesskey="s"
+									autocomplete="off">
+							</div>
+						</div>
+						<input type="hidden" name="type" value="p"> <input
+							type="submit" class="search-button">
+					</form>
+				</div>
+				<div class="my-info cell fixed">
+					<a href="javascript:void(0);" target="_self" id="J_MyInfoTrigger"
+						class="my-info-trigger status-login">登录</a>
+				</div>
+			</div>
+		</div>
+
+		<div style="-webkit-transform: translate3d(0, 0, 0);">
+			<div id="banner_box" class="box_swipe">
+				<ul
+					style="list-style: none outside none; transition-duration: 500ms;">
+					<li><a onClick="return false;"> <img src="image/200.jpg"
+							alt="2" style="width: 100%;">
+					</a></li>
+					<li><a onClick="return false;"> <img src="image/200.jpg"
+							alt="2" style="width: 100%;">
+					</a></li>
+					<li><a onClick="return false;"> <img src="image/200.jpg"
+							alt="2" style="width: 100%;">
+					</a></li>
+					<li><a onClick="return false;"> <img src="image/200.jpg"
+							alt="2" style="width: 100%;">
+					</a></li>
+				</ul>
+				<ol>
+
+					<li class="on"></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ol>
+			</div>
+		</div>
+		<script>
+			$(function() {
+				new Swipe(document.getElementById('banner_box'), {
+					speed : 500,
+					auto : 3000,
+					callback : function() {
+						var lis = $(this.element).next("ol").children();
+						lis.removeClass("on").eq(this.index).addClass("on");
+					}
+				});
+			});
+		</script>
+
+	</div>
+
+	<div class="recommend openwebview">
+		<div class="wrap">
+			<div class="item" page_click_button="类目_生活家">
+				<div class="caption">
+					<h3 class="caption_life">
+						<a href="">当季热销</a>
+					</h3>
+					<!--<span class="browse">(3.6万人正在浏览)</span>-->
+				</div>
+				<div class="item_brand">
+					<a href="javascript:;" data-url="/index/activity/show/aid/3249"
+						page_click_button="活动"> <img class="fadeInImg"
+						_src="//upload1/2015/0109/5b628ff536acfadbf20fa304389f7b87-142080897751563300.jpg"
+						src="image/sy_img/5b628ff536acfadbf20fa304389f7b87-142080897751563300.jpg">
+
+					</a>
+				</div>
+				<div class="item_con clearfix" page_click_button="单品">
+					<dl>
+						<dt>
+							<a href="javascript:;"
+								data-url="//product/detail?pid=15012273794234&amp;from=1"><img
+								id="test1" class="fadeInImg"
+								_src="//upload1/2015/0108/thumb_468_468_0195b80b910d6e07dad39ba9488a604c-142068899393529400.jpg?imageView2/0/w/608/h/608"
+								src="image/sy_img/thumb_468_468_0195b80b910d6e07dad39ba9488a604c-1420688993935.jpg"></a>
+						</dt>
+						<dd>
+							<p class="txt">样样Q牛津布衣物折叠收纳篮</p>
+							<div class="price clearfix">
+								<span class="now_price"><i>￥</i><em>17.6</em></span><span
+									class="old_price"><i>￥</i><em>47.8</em></span>
+							</div>
+						</dd>
+					</dl>
+					<dl>
+						<dt>
+							<a href="javascript:;"
+								data-url="//product/detail?pid=15012276248249&amp;from=1"><img
+								class="fadeInImg" id="test2"
+								_src="//upload1/2015/0109/thumb_608_608_3473c485f3b279ad10589c72099a0fb0-142077246424044300.jpg"
+								src="image/sy_img/thumb_608_608_3473c485f3b279ad10589c72099a0fb0-1420772464240.jpg"></a>
+						</dt>
+						<dd>
+							<p class="txt">【包邮14.5】艾可思便携带盖硅胶套防漏杯</p>
+							<div class="price clearfix">
+								<span class="now_price"><i>￥</i><em>14.5</em></span><span
+									class="old_price"><i>￥</i><em>80</em></span>
+							</div>
+						</dd>
+					</dl>
+				</div>
+			</div>
+
+			<div class="item" page_click_button="类目_女人街">
+				<div class="caption">
+					<h3 class="caption_lady">
+						<a href="">女人街</a>
+					</h3>
+					<!--<span class="browse">(3.6万人正在浏览)</span>-->
+				</div>
+				<div class="item_brand">
+					<a href="javascript:;" data-url="/index/activity/show/aid/3205"
+						page_click_button="活动"> <img class="fadeInImg"
+						_src="image/sy_img/5f3a79f571e3bce6f849766ffd881faa-142053787039866000.jpg"
+						src="image/sy_img/5f3a79f571e3bce6f849766ffd881faa-142053787039866000.jpg">
+						<span class="special">特卖</span>
+					</a>
+				</div>
+				<div class="item_con clearfix" page_click_button="单品">
+					<dl>
+						<dt>
+							<a href="javascript:;"
+								data-url="//product/detail?pid=15012268535225&amp;from=1"><img
+								class="fadeInImg"
+								_src="//upload1/2015/0107/thumb_608_608_2a763c9b4730e1e729836150cb14064c-142062372441312500.jpg"
+								src="image/sy_img/thumb_608_608_2a763c9b4730e1e729836150cb14064c-1420623724413.jpg"></a>
+						</dt>
+						<dd>
+							<p class="txt">中老年加厚纯棉保暖高领内衣套装</p>
+							<div class="price clearfix">
+								<span class="now_price"><i>￥</i><em>39.9</em></span><span
+									class="old_price"><i>￥</i><em>79</em></span>
+							</div>
+						</dd>
+					</dl>
+					<dl>
+						<dt>
+							<a href="javascript:;"
+								data-url="//product/detail?pid=15012276432256&amp;from=1"><img
+								class="fadeInImg"
+								_src="//upload1/2015/0109/thumb_608_608_6672c393d2b81205554d7d2a1ba4521f-142078611087284600.jpg"
+								src="image/sy_img/thumb_608_608_6672c393d2b81205554d7d2a1ba4521f-1420786110872.jpg"></a>
+						</dt>
+						<dd>
+							<p class="txt">中长款长袖女打底衫加厚加绒冬潮大码女装</p>
+							<div class="price clearfix">
+								<span class="now_price"><i>￥</i><em>29</em></span><span
+									class="old_price"><i>￥</i><em>149</em></span>
+							</div>
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="item" page_click_button="类目_男人馆">
+				<div class="caption">
+					<h3 class="caption_man">
+						<a href="">男人馆</a>
+					</h3>
+					<!--<span class="browse">(3.6万人正在浏览)</span>-->
+				</div>
+				<div class="item_brand">
+					<a href="javascript:;" data-url="/index/activity/show/aid/3265"
+						page_click_button="活动"> <img class="fadeInImg"
+						_src="//upload1/2015/0109/8e157bcbaf49362fb69e8139cdf7f4b5-142081131769634200.jpg"
+						src="image/sy_img/8e157bcbaf49362fb69e8139cdf7f4b5-142081131769634200.jpg">
+
+					</a>
+				</div>
+				<div class="item_con clearfix" page_click_button="单品">
+					<dl>
+						<dt>
+							<a href="javascript:;"
+								data-url="//product/detail?pid=15012276431255&amp;from=1"><img
+								class="fadeInImg"
+								_src="//upload1/2015/0109/thumb_468_468_b655efddaffd062839eb7fdf7d0688b3-142078601514321200.jpg?imageView2/0/w/608/h/608"
+								src="image/sy_img/thumb_468_468_b655efddaffd062839eb7fdf7d0688b3-1420786015143.jpg"></a>
+						</dt>
+						<dd>
+							<p class="txt">男士高帮时尚韩版透气软面休闲鞋</p>
+							<div class="price clearfix">
+								<span class="now_price"><i>￥</i><em>49</em></span><span
+									class="old_price"><i>￥</i><em>299</em></span>
+							</div>
+						</dd>
+					</dl>
+					<dl>
+						<dt>
+							<a href="javascript:;"
+								data-url="//product/detail?pid=15012276718265&amp;from=1"><img
+								class="fadeInImg"
+								_src="//upload1/2015/0109/thumb_608_608_cb0efa133700b6816b1eb0ccf7d71982-142080622797377900.jpg"
+								src="image/sy_img/thumb_608_608_cb0efa133700b6816b1eb0ccf7d71982-1420806227973.jpg"></a>
+						</dt>
+						<dd>
+							<p class="txt">【拍下69】套头毛衣男韩版圆领修身男士毛衣</p>
+							<div class="price clearfix">
+								<span class="now_price"><i>￥</i><em>69</em></span><span
+									class="old_price"><i>￥</i><em>259</em></span>
+							</div>
+						</dd>
+					</dl>
+				</div>
+			</div>
+
+			<div class="item" page_click_button="类目_亲子社">
+				<div class="caption">
+					<h3 class="caption_paternity">
+						<a href="">亲子社</a>
+					</h3>
+					<!--<span class="browse">(3.6万人正在浏览)</span>-->
+				</div>
+				<div class="item_brand">
+					<a href="javascript:;" data-url="/index/activity/show/aid/3252"
+						page_click_button="活动"> <img class="fadeInImg"
+						_src="//upload1/2015/0109/76e6bedf9351e972b67fe7c10742158c-142079146080774900.jpg"
+						src="image/sy_img/76e6bedf9351e972b67fe7c10742158c-142079146080774900.jpg">
+
+					</a>
+				</div>
+				<div class="item_con clearfix" page_click_button="单品">
+					<dl>
+						<dt>
+							<a href="javascript:;"
+								data-url="//product/detail?pid=15012276275252&amp;from=1"><img
+								class="fadeInImg"
+								_src="//upload1/2015/0109/1f53367b251e1ae899be770494eb9670-142077460304618100.jpg?imageView2/0/w/608/h/608"
+								src="image/sy_img/1f53367b251e1ae899be770494eb9670-142077460304618100.jpg"></a>
+						</dt>
+						<dd>
+							<p class="txt">幼儿园卡通姓名贴不干胶36张</p>
+							<div class="price clearfix">
+								<span class="now_price"><i>￥</i><em>5</em></span>
+							</div>
+						</dd>
+					</dl>
+					<dl>
+						<dt>
+							<a href="javascript:;"
+								data-url="//product/detail?pid=15012272082232&amp;from=1"><img
+								class="fadeInImg"
+								_src="//upload1/2015/0108/thumb_608_608_5e431fa51efd0634e39add2ab1d208b3-142068559323679400.jpg"
+								src="image/sy_img/thumb_608_608_5e431fa51efd0634e39add2ab1d208b3-1420685593236.jpg"></a>
+						</dt>
+						<dd>
+							<p class="txt">【拍下9.9】可爱龙猫公仔45CM龙猫抱枕毛绒玩具</p>
+							<div class="price clearfix">
+								<span class="now_price"><i>￥</i><em>9.9</em></span><span
+									class="old_price"><i>￥</i><em>24</em></span>
+							</div>
+						</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+		<div class="layout-login-area" id="footer">
+			<div class="layout-login">
+				<span class="layout-lg-bar">微信号：juyingweike </span> <span
+					class="layout-new-fr"><a href="">反馈</a></span>
+			</div>
+
+			<div class="layout-copyright">Copyright © 2012-2015 Two-Core
+				版权所有</div>
+		</div>
+	</div>
+
+	<div style="display: block;" class="footer_bar openwebview">
+		<ul class="warp clearfix">
+			<li>
+				<!--<li class="on">--> <a href="/ClothesServer/home/index"
+				page_click_button="底部_首页"> <i class="new_icon"></i> <span>首页</span>
+			</a>
+			</li>
+			<li><a href="" page_click_button="底部_品牌"> <i
+					class="new_icon"></i> <span>分类</span>
+			</a></li>
+			<li><a href="/ClothesServer/home/login"
+				page_click_button="底部_我的"
+				class="to_personalcenter personalcenternum"> <i class="new_icon"><strong
+						style="display: none;"></strong></i> <span>我的</span>
+			</a></li>
+			<li><a href="" data-url="/shoppingcart/index"
+				page_click_button="底部_购物车" class="new_car_center"> <i
+					class="new_icon"><strong style="">2</strong></i> <span>购物车</span>
+			</a></li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="js/jquery/jquery-1.11.3.min.js"></script>
+	<!--首页幻灯js end-->
+	<script type="text/javascript">
+		$(".my-info.cell.fixed").click(function(){
+			$("#J_MyInfoDialog").css("display","block");
+			$("#J_MyInfoMask").css("display","block");
+			});
+		$("#J_MyInfoClose").click(function(){
+				$("#J_MyInfoDialog").css("display","none");
+			$("#J_MyInfoMask").css("display","none");
+			});
+		$(document)
+				.ready(
+						function($) {
+								$(document).scroll(function(){
+		var top = $(document).scrollTop();
+		if(top < 100)
+			$("#J_HeaderContent").removeClass("tmall-bg-red");
+		else {
+			$("#J_HeaderContent").addClass("tmall-bg-red");
+			}
+	});
+							$
+									.getJSON(
+											"/ClothesServer/home/data",
+											function(data) {
+												$
+														.each(
+																data,
+																function(i,
+																		item) {
+																	var html = '<div class="item">'
+																			+ '				<div class="caption">'
+																			+ '					<h3 class="caption_life">'
+																			+ '						<a href="">'
+																			+ item.title
+																			+ '</a>'
+																			+ '					</h3>'
+																			+ '				</div>'
+																			+ '				<div class="item_brand">'
+																			+ '					<a href="javascript:;" '+
+													'						> <img class="fadeInImg"'+
+													'						src="'+item.picTop+'">'
+																			+ '					</a>'
+																			+ '				</div>'
+																			+ '				<div class="item_con clearfix">'
+																			+ '					<dl><dt>'
+																			+ '							<a href="/ClothesServer/product/productdetail?id='
+																			+ item.goodOneId
+																			+ '"><img'+
+													'								 class="fadeInImg"'+
+													'								src="'+item.goodOnePic+'"></a>'
+																			+ '						</dt>'
+																			+ '						<dd>'
+																			+ '							<p class="txt">'
+																			+ item.goodOneTitle
+																			+ '</p>'
+																			+ '							<div class="price clearfix">'
+																			+ '								<span class="now_price"><i>￥</i><em>'
+																			+ item.goodOneSalePrice
+																			+ '</em></span><span'+
+													'									class="old_price"><i>￥</i><em>'
+																			+ item.goodOnePrice
+																			+ '</em></span>'
+																			+ '							</div>'
+																			+ '						</dd>'
+																			+ '					</dl>'
+																			+ '					<dl>'
+																			+ '						<dt>'
+																			+ '							<a href="/ClothesServer/product/productdetail?id='
+																			+ item.goodOneId
+																			+ '"'
+																			+ '								><img'+
+													'								class="fadeInImg"'+
+													'								src="'+item.goodTwoPic+'"></a>'
+																			+ '						</dt>'
+																			+ '						<dd>'
+																			+ '							<p class="txt">'
+																			+ item.goodTwoTitle
+																			+ '</p>'
+																			+ '							<div class="price clearfix">'
+																			+ '								<span class="now_price"><i>￥</i><em>'
+																			+ item.goodTwoSalePrice
+																			+ '</em></span><span'+
+													'									class="old_price"><i>￥</i><em>'
+																			+ item.goodTwoPrice
+																			+ '</em></span>'
+																			+ '							</div>'
+																			+ '						</dd>'
+																			+ '					</dl>'
+																			+ '				</div>'
+																			+ '			</div>';
+																	$(html)
+																			.appendTo(
+																					'.wrap');
+																});
+												var items = $(".item");
+												$(".item")
+														.each(
+																function(i) {
+																	var item = items
+																			.eq(i);
+																	item
+																			.find(
+																					"a:first")
+																			.text(
+																					data[i].title);
+																	item
+																			.find(
+																					".now_price")
+																			.eq(
+																					0)
+																			.text(
+																					"")
+																			.append(
+																					"<i>￥</i><em>"
+																							+ data[i].goodOneSalePrice
+																							+ "</em>");
+																	item
+																			.find(
+																					".old_price")
+																			.eq(
+																					0)
+																			.text(
+																					"")
+																			.append(
+																					"<i>￥</i><em>"
+																							+ data[i].goodOnePrice
+																							+ "</em>");
+																	item
+																			.find(
+																					".now_price")
+																			.eq(
+																					1)
+																			.text(
+																					"")
+																			.append(
+																					"<i>￥</i><em>"
+																							+ data[i].goodTwoSalePrice
+																							+ "</em>");
+																	item
+																			.find(
+																					".old_price")
+																			.eq(
+																					1)
+																			.text(
+																					"")
+																			.append(
+																					"<i>￥</i><em>"
+																							+ data[i].goodTwoPrice
+																							+ "</em>");
+																	item
+																			.find(
+																					".txt:first")
+																			.text(
+																					data[i].goodOneTitle);
+																	item
+																			.find(
+																					".txt")
+																			.eq(
+																					1)
+																			.text(
+																					data[i].goodTwoTitle);
+																	item
+																			.find(
+																					".fadeInImg")
+																			.eq(
+																					1)
+																			.attr(
+																					"src",
+																					data[i].goodOnePic);
+																	item
+																			.find(
+																					".fadeInImg")
+																			.eq(
+																					2)
+																			.attr(
+																					"src",
+																					data[i].goodTwoPic);
+																});
+											});
+						});
+	</script>
+
+</body>
+
+</html>

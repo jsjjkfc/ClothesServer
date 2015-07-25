@@ -1,0 +1,237 @@
+.ui-slider {
+	background-color: #fff;
+	overflow: hidden
+}
+
+.ui-slider .scroller {
+	height: 3.2rem;
+	display: -webkit-box;
+	-webkit-box-lines: multiple
+}
+
+.ui-slider .scroller div {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-align: center;
+	-webkit-box-pack: center;
+	display: -ms-flexbox;
+	-ms-flex-pack: center;
+	-ms-flex-align: center
+}
+
+.ui-slider .scroller img {
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	max-width: 100%;
+	max-height: 100%
+}
+
+.ui-slider .icons {
+	position: absolute;
+	top: .05rem;
+	left: 0;
+	right: 0;
+	text-align: center
+}
+
+.ui-slider .icons i {
+	height: .06rem;
+	width: .06rem;
+	-webkit-border-radius: .06rem;
+	border-radius: .06rem;
+	margin: 0 .03rem;
+	display: inline-block;
+	background-color: rgba(0, 0, 0, .2)
+}
+
+.ui-slider .icons i.current {
+	background-color: #b10000
+}
+
+.ui-gallery {
+	font-size: 13px;
+	background-color: #000;
+	z-index: 9999;
+	position: absolute;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0
+}
+
+.ui-gallery .scroller {
+	height: 100%
+}
+
+.ui-gallery .icons i {
+	background-color: #7a7a7a
+}
+
+.ui-gallery .icons i.current {
+	background-color: #b10000
+}
+
+#s-desc {
+	position: relative;
+	word-wrap: break-word;
+	vertical-align: top
+}
+
+#s-desc.hasTopBar {
+	padding-top: .34rem
+}
+
+#s-desc img {
+	display: block;
+	margin: 0 auto;
+	vertical-align: top;
+	max-width: 100%
+}
+
+#s-desc div, #s-desc p, #s-desc span {
+	word-break: break-all
+}
+
+#s-desc.chaoshiDesc {
+	padding: 0 .05rem
+}
+
+.tm-miao-banner {
+	background-color: rgba(255, 255, 255, .7);
+	width: 100%;
+	position: absolute;
+	top: 0;
+	-webkit-transition: top 1s;
+	left: 0;
+	height: .34rem;
+	line-height: .34rem
+}
+
+.tm-miao-banner.hide {
+	-webkit-transition: top 1s
+}
+
+.tm-miao-banner .wrap {
+	padding: 0 .1rem 0 .2rem;
+	height: .34rem;
+	line-height: .34rem
+}
+
+.tm-miao-banner .wrap::after {
+	content: '\20';
+	height: 0;
+	display: block;
+	clear: both
+}
+
+.tm-miao-banner .wrap .leftText {
+	position: relative;
+	float: left;
+	color: #000
+}
+
+.tm-miao-banner .wrap .leftText b {
+	color: #e54555
+}
+
+.tm-miao-banner .wrap .rightBtn {
+	margin: .05rem 0 0;
+	padding: 0 5px;
+	opacity: 1;
+	position: relative;
+	float: right;
+	border-radius: 5px;
+	background-color: #e54555;
+	color: #fff;
+	height: 22px;
+	line-height: 22px
+}
+
+.hidden {
+	display: none
+}
+
+.faq-bar, .from-bar {
+	height: 40px;
+	width: 100%;
+	font: 400 14px/40px "microsoft yahei";
+	text-indent: 1em
+}
+
+.faq-bar {
+	color: #5C2694;
+	background: #F9F3FF
+}
+
+.faq-bar b {
+	float: right;
+	display: block;
+	width: 18px;
+	height: 30px;
+	margin: 5px 10px;
+	background:
+		url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAeCAYAAAAhDE4sAAAAAXNSR0IArs4c6QAAAslJREFUSA2llV9IU1Ecx3/nru3uj220OwlqhMTsqeFLqWmURWhb+DiwbVKJRQ/bGkXvvgeBs0cr1G0aixDNjQxC6M9bRQo9zBlGRkW5SjFF7f4658odd9dtOjsv5/c7v+/vc3/n/s65F4AOlyPCew52H2D2TgfHEvcA8es0mg/eQ3fa/gv0Y3FlCABfEYSovzpyficwqaLxbzeXvi+suCjgJQI34Kvu8ZYLk0AsaQO27CaALwBIv8/R4y8HlgPJsN9L8266zeeEQJ/X0d2+XZhGLUwvTqxV6esSPG9q5ICED9tcs1PzqXdqndrfBGICCcbXJvS8sYEgCTtt5z5OzSdLwoiarPQ99tsGnVE3ShBP0fXO6HTwvjKutPPekTLA7MTc9eXVP6utCPCMur0+R6RDrZH9gluTg2x+v/BkXTDXJcwaYz0QLuy0uuamsqm3Sg2ztwQx0eyviXWrBDPUEkLCNVb358ls8g2LyWNbICZmMFrZQ7PGcBQozGlzf6ENeF02SIbZra6EgYMjrJs1wtmvk9mUBCvZNflp6pl9LQTCPaJNcIkALYPTgaclu6YG5PkE8nLznDxhEaepqksvcNwwIrQggausGiYta2sMsl8rDNO0ZvrJuRLNBHrl520bxCB2rTCCQM4g4uV4JnhXhrB5l9IpZktXRasdofHTgGJnPBO6p9ZueY5y941B6H2LZUIF71vJilr3dRl5o3YUEJuQkI5YOtCnrkT2i4IYxFxhe0whJ0WCl+LpYL+cVGgu+LIliEkYo8ETIooX45lrA4WSlWubKmree8tkMenHaHeO0+5coJCoMqGYnVcRg1SaDUkqbkQUKSQUK5aoXs9V5KnsqtCZ9QzSQEBsp90ZVItL+RKIVcJbDCl67I/RY++PpUP0h1nekEC23fo2BKwHEXzxmeCD8hAbagn0EzBq+bs2PjRz49NOICznH0Ld61JZqmNYAAAAAElFTkSuQmCC")
+		center no-repeat;
+	background-size: 9px 15px
+}
+
+.from-bar {
+	color: #999;
+	background: #F9F9F9
+}
+
+.product-detail dl {
+	padding: 5px 0;
+	margin: 0
+}
+
+.product-detail .title, .product-detail .desc, .product-detail dt,
+	.product-detail dd {
+	display: inline-block;
+	font: 400 14px/20px "microsoft yahei"
+}
+
+.product-detail dt {
+	padding: 0 10px
+}
+
+.product-detail .title {
+	display: block;
+	padding: 10px 10px 5px
+}
+
+.product-detail .desc {
+	padding: 5px 10px
+}
+
+.product-detail dd {
+	text-indent: 0;
+	padding: 0;
+	margin: 0
+}
+
+.size-title {
+	width: 100%;
+	text-align: center;
+	font: 400 21px/30px "microsoft yahei"
+}
+
+.img-list {
+	margin: 0;
+	padding: 0
+}
+
+.img-list li {
+	list-style: none;
+	padding: 5px 0;
+	margin: 0;
+	width: 100%;
+	text-align: center
+}
+
+.img-list img {
+	background: red
+}

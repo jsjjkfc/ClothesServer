@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>FrozenUI Demo</title>
+<link rel="stylesheet" href="../frozenui/dist/css/frozen.css">
+<style>
+ul li {
+	-webkit-box-flex: 1;
+	text-align: center;
+	position: relative;
+	font-size: 10px;
+}
+
+ul li:after {
+	content: ' ';
+	position: absolute;
+	top: 22px;
+	right: -1px;
+	height: 14px;
+	border-right: 1px #ddd solid;
+}
+
+ul li a {
+	display: block;
+	padding-top: 14px;
+	height: 46px;
+	font-size: 12px;
+	color: #666;
+}
+
+.mb-list {
+	width: 300px;
+	padding: 18px 5px 0 15px;
+	text-align: center;
+	overflow: hidden;
+	margin: 0 auto;
+	margin-bottom: 15px
+}
+
+.mb-list a {
+	width: 65px;
+	height: 18px;
+	padding-top: 68px;
+	margin: 0 10px 5px 0;
+	position: relative;
+	float: left;
+	background: url(../../image/common/mb_bg.png) no-repeat;
+	background-size: contain;
+	font-size: 12px;
+	color: #333;
+	text-decoration: none
+}
+
+.mb-list a:after {
+	content: ' ';
+	position: absolute;
+	width: 100%;
+	height: 65px;
+	left: 0;
+	top: 0;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.mb-icon1:after {
+	background-image: url(../../image/common/mb_icon1.png);
+	background-size: 20px 25px;
+}
+
+.mb-icon3:after {
+	background-image: url(../../image/common/mb_icon3.png);
+	background-size: 26px 25px;
+}
+
+.mb-icon2:after {
+	background-image: url(../../image/common/mb_icon2.png);
+	background-size: 35px 25px;
+}
+
+.mb-icon5:after {
+	background-image: url(../../image/common/mb_icon5.png);
+	background-size: 26px 25px;
+}
+
+.mb-icon12:after {
+	background-image: url(../../image/common/mb_icon12.png);
+	background-size: 25px 24px;
+}
+</style>
+</head>
+<body>
+	<header class="ui-header ui-header-positive ui-border-b"
+		style="background: #f2711c">
+		<i class="ui-icon-return" onclick="history.back()"></i>
+		<h1>
+			我的账户<i class="ui-icon-home" style="float: right"></i>
+		</h1>
+	</header>
+
+	<section class="ui-container">
+		<div style="height: 90px; display: block; overflow: hidden">
+			<div
+				style="background: url(http://7xk6ga.com1.z0.glb.clouddn.com/T16cdWXBVbXXb1upjX.jpg) repeat-x; background-size: contain; text-align: right; height: 100%">
+				<img
+					src="http://7xk6ga.com1.z0.glb.clouddn.com/T1qHXWXt0bXXb1upjX.jpg">
+			</div>
+		</div>
+		<dl
+			style="height: 95px; margin-top: -45px; display: block overflow: hidden;">
+			<dt
+				style="float: left; padding: 10px 11px 0; text-align: center; position: relative;">
+				<img style="width: 56px; height: 56px; border-radius: 56px;"
+					src="http://7xk6ga.com1.z0.glb.clouddn.com/avatar-160.png" /> <span
+					id="J_userLevel"
+					style="background: url(http://7xk6ga.com1.z0.glb.clouddn.com/下载.png) no-repeat; background-size: contain; width: 68px; height: 26px; position: absolute; left: 5px; top: 4px; padding-top: 64px; font-size: 10px; color: #fff;">会员</span>
+			</dt>
+			<dd id="J_nick"
+				style="font-size: 16px; text-shadow: 1px 1px 4px rgba(0, 0, 0, .6); color: #fff; padding-top: 16px;">
+				<span>jsjjlupeng</span> <b id="s_icon" class="c-icon-c-1-5"></b>
+			</dd>
+		</dl>
+		<div
+			style="height: 60px; margin-top: -50px; background: -webkit-gradient(linear, center top, center bottom, from(#f9f9f9), to(#eee)); -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .1); padding-left: 78px; overflow: hidden; display: block">
+			<ul
+				style="display: -webkit-box; list-style: none; margin: 0; padding: 0; position: relative">
+				<li><a><strong>0</strong><br>待付款</a></li>
+				<li><a><strong>0</strong><br>待发货</a></li>
+				<li><a><strong>0</strong><br> 待收货</a></li>
+				<li><a><strong>0</strong><br>待评价</a></li>
+			</ul>
+		</div>
+		<div class="mb-list">
+			<a class="mb-icon1 fragment">全部订单</a> <a class="mb-icon12 fragment">退款中</a>
+			<a class="mb-icon3 fragment">宝贝收藏</a> <a class="mb-icon2 fragment">查物流</a>
+			<a class="mb-icon5 fragment">购物车</a>
+		</div>
+	</section>
+	<!-- /.ui-container-->
+	<div
+		style="display: block; background-color: #fff; margin: 0 auto; padding-top: 150px; padding-bottom: 1.3em; text-align: center; width: 100%;"
+		id="footer">
+		<div
+			style="border-bottom: 1px solid #e5e5e5; padding: 0.55em 0.71em; text-align: left;">
+			<span style="color: #868686; display: inline-block; margin: 0 2px;">微信号：juyingweike
+			</span> <span style="float: right"><a href="">反馈</a></span>
+		</div>
+
+
+		<div style="color: #999; line-height: 2.5em;">©CopyRight
+			优美优科技有限公司</div>
+	</div>
+	<script src="../frozenui/lib/zepto.min.js"></script>
+	<script src="../frozenui/dist/js/frozen.js"></script>
+	<script>
+		$('ul li').click(function() {
+			location.href = $(this).data('href');
+		});
+		$('.ui-header .ui-btn').click(function() {
+			location.href = 'index.html';
+		});
+	</script>
+</body>
+</html>

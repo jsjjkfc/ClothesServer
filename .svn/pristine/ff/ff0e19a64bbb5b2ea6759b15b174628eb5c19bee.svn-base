@@ -1,0 +1,74 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>用户登录</title>
+<link href="/ClothesServer/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link rel="stylesheet"
+	href="/ClothesServer/css/backstage/font-awesome.min.css" />
+</head>
+<body>
+	<h1 style="text-align: center">账号登录</h1>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+				<form class="form-horizontal" id="login"
+					action="/ClothesServer/account/login" method="post">
+					<div class="control-group">
+						<label class="control-label" for="inputEmail">账号</label>
+						<div class="input-group">
+							<div class="input-group-addon">
+								<i class="glyphicon glyphicon-user"></i>
+							</div>
+							<input id="inputEmail" type="text" name="uname"
+								class="form-control" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputPassword">密码</label>
+						<div class="input-group">
+							<div class="input-group-addon">
+								<i class="glyphicon glyphicon-lock"></i>
+							</div>
+							<input id="inputPassword" type="password" name="upassword"
+								class="form-control" />
+						</div>
+					</div>
+					<div class="control-group col-xs-12">
+						<div class="controls">
+							<br> <label class="checkbox"><input type="checkbox" />
+								记住登录状态</label> <br>
+							<button type="submit" class="btn btn-primary btn-block">登陆</button>
+							<button type="button" class="btn btn-warning btn-block">忘记密码</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="/ClothesServer/js/jquery/jquery-1.11.3.min.js"></script>
+	<script src="/ClothesServer/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		 var options = {
+			//定义返回JSON数据，还包括xml和script格式
+			dataType : 'text',
+			type : 'post',
+			url : "/ClothesServer/account/login",
+			beforeSend : function() {
+			},
+			success : function(data) {
+				if (data == 0) {
+					alert("登录成功");
+				} else {
+					alert("登录失败");
+				}
+
+			}
+		};
+		$("#login").ajaxSubmit(options);
+	</script>
+</body>
+</html>
