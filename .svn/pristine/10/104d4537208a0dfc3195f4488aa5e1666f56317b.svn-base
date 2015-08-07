@@ -1,0 +1,146 @@
+package com.twocore.controller;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.twocore.model.OrderModel;
+import com.twocore.model.OrderProductModel;
+import com.twocore.model.ProductModel;
+import com.twocore.model.UserModel;
+import com.twocore.service.IOrderProductService;
+import com.twocore.service.IOrderService;
+import com.twocore.service.IProductService;
+import com.twocore.service.IUserService;
+import com.twocore.utils.JacksonUtil;
+
+@Scope("prototype")
+// singleton为单例模式
+@Controller
+@RequestMapping("/shoppingcart")
+// 购物车
+public class ShoppingCartController {
+	@Resource(name = "orderProductService")
+	IOrderProductService orderProductService;
+	@Resource(name = "orderService")
+	IOrderService orderService;
+	@Resource(name = "userService")
+	IUserService userService;
+	@Resource(name = "productService")
+	IProductService productService;
+
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public ModelAndView mainCart(@RequestParam("proid") String proid,
+			HttpSession httpSession) {
+		Map<String, Object> data = new HashMap<String, Object>();
+		if (httpSession.getAttribute("uname") != null) {
+			data.put("uname", httpSession.getAttribute("uname"));
+			data.put("proid", proid);
+			OrderProductModel orderProductModel = new OrderProductModel();
+			// 跳转订单结算页
+			return new ModelAndView("page/shopping_cart", data);
+		} else {
+			return new ModelAndView("page/login");
+		}
+	}
+
+	
+	/**
+	 * Spring MVC
+	 * 是基于Servlet，在Http请求到达Servlet解析之前，GET过来的URL已经被Tomcat先做了一次URLDecode
+	 * 。Tomcat对GET方式默认的URL解码结果是iso-8859-1而不是我认为的UTF-8
+	 *  在server.xml connector中添加 URIEncoding="UTF-8"
+	 * */
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	public ModelAndView addToCart(@RequestParam("proid") String proid,
+			@RequestParam("count") String count,
+			@RequestParam("attributes") String attributes,
+			HttpSession httpSession, HttpServletRequest request,
+			HttpServletResponse response) {
+		try {
+			UserModel user = (UserModel) httpSession.getAttribute("user");
+			if (user != null) {
+				OrderModel orderModel=orderService.queryByUserId(user.getUserId());
+				if(orderModel!=null){//该用户还没有未结算的订单
+					ProductModel productModel=new ProductModel();
+					productModel.setProductId(Integer.parseInt(proid));
+					OrderProductModel orderProductModel = new OrderProductModel();
+					orderProductModel.setProduct(productModel);
+					orderProductModel.setNum(Integer.parseInt(count));
+					orderProductModel.setColor("");
+					orderProductModel.setSize("");
+					Set<OrderProductModel> orderProductes=orderModel.getOrderProductes();
+					orderProductes.add(orderProductModel);
+					orderModel.setOrderProductes(orderProductes);
+					orderService.update(orderModel);//update
+					
+					//跳转处理
+					Map<String, Object> data = new HashMap<String, Object>();
+					data.put("uname", user.getUsername());
+					data.put("proid", proid);
+					List<OrderProductModel> orderProductModels = orderProductService
+							.queryByOrderid(orderModel.getOrderId());
+					String cartinfo = JacksonUtil.toJSon(orderProductModels);
+					data.put("cartinfo", cartinfo);
+					return new ModelAndView("/page/shopping_cart", data);
+					
+				}else{//该用户有未结算的订单
+					orderModel=new OrderModel();
+					orderModel.setStatus(0);
+					orderModel.setTime(new Date().toString());
+					orderModel.setUserId(user.getUserId());
+					
+					
+					ProductModel productModel=new ProductModel();
+					productModel.setProductId(Integer.parseInt(proid));
+					OrderProductModel orderProductModel = new OrderProductModel();
+					orderProductModel.setProduct(productModel);
+					orderProductModel.setNum(Integer.parseInt(count));
+					orderProductModel.setColor("");
+					orderProductModel.setSize("");
+					
+					Set<OrderProductModel> orderProductes=new HashSet<OrderProductModel> ();
+					orderProductes.add(orderProductModel);
+					orderModel.setOrderProductes(orderProductes);
+					//insert order
+					orderService.insertOrder(orderModel);
+					
+					OrderModel temp=orderService.queryByUserId(user.getUserId());
+					//跳转处理
+					Map<String, Object> data = new HashMap<String, Object>();
+					data.put("uname", user.getUsername());
+					data.put("proid", proid);
+					List<OrderProductModel> orderProductModels = orderProductService
+							.queryByOrderid(temp.getOrderId());
+					String cartinfo = JacksonUtil.toJSon(orderProductModels);
+					data.put("cartinfo", cartinfo);
+					return new ModelAndView("/page/shopping_cart", data);
+				}
+		
+			} else {
+				return new ModelAndView("/page/login");
+			}
+		} catch (Exception e) {
+			Map<String, Object> data = new HashMap<String, Object>();
+			data.put("errorMsg", e.getMessage());
+			return new ModelAndView("/page/error", data);
+		}
+
+	}
+}

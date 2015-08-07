@@ -1,0 +1,30 @@
+package com.twocore.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.twocore.model.AddressModel;
+import com.twocore.service.IAddressService;
+
+@Scope("prototype")
+// singleton为单例模式
+@Controller
+@RequestMapping("/address")
+public class AddressController {
+	@Resource(name = "addressService")
+	IAddressService addressService;
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	public @ResponseBody List<AddressModel> getAddress(
+			@RequestParam("userId") int userId) {
+		return addressService.getAddressByUserId(userId);
+	}
+}
